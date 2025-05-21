@@ -111,3 +111,52 @@ if (trutyFalsy) {
 } else {
   console.log("Falsy");
 }
+
+const adrian: any = {
+  nombre: "Adrian",
+  edad: 30,
+  casado: false,
+  hijos: null,
+  mascotas: ["perro", "gato"],
+  direccion: {
+    calle: "Calle falsa",
+    numero: 123,
+  },
+};
+console.log(adrian);
+
+console.log(adrian.nombre);
+
+console.log(adrian["nombre"]);
+
+adrian.trabajo = "Programador";
+
+console.log(adrian);
+
+//eliminar propiedades
+adrian.trabajo = undefined;
+delete adrian.trabajo;
+console.log(adrian);
+
+//Variables por valor o por referencia
+
+// Variables por valor
+//Primitivas: number, string, boolean
+
+//Varaiables por referencia
+// como clonar
+let notas = {
+  total: 10,
+};
+
+let notas2doBim = notas; // por referencia
+notas2doBim.total = notas2doBim.total + 1;
+console.log(notas2doBim);
+console.log(notas);
+
+// let notasClonadasUno = Object.assign({}, notas);
+// let arregloACopiar = [1, 2, 3];
+// let arregloClonado = Object.assign([], arregloACopiar);
+
+// notasClonadasUno.total = notasClonadasUno.total + 1;
+// console.log(notasClonadasUno);
