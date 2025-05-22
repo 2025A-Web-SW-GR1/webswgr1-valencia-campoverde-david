@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Unir PDF - Combinar archivos PDF en línea | Smallpdf</title>
+    <link
+      rel="icon"
+      href="https://s.smallpdf.com/static/40d7d8365bc6e925.svg"
+    />
+    <style>
+      /* Reset y estilos generales */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+        color: #333;
+        line-height: 1.6;
+      }
+
+      a {
+        display: flex;
+        text-decoration: none;
+        color: inherit;
+        padding: 10px;
+      }
+
+      ul {
+        list-style: none;
+      }
+
+      .container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 15px;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 10px 20px;
+        border-radius: 4px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+
+      .btn-primary {
+        background-color: #ffffff;
+        color: rgb(0, 0, 0);
+        border: 1px solid #ffffff;
+      }
+
+      .btn-primary:hover {
+        background-color: #0148c4;
+        border-color: #0148c4;
+      }
+
+      .btn-outline {
+        background-color: transparent;
+        color: #0160ff;
+        border: 1px solid #0160ff;
+      }
+
+      .btn-outline:hover {
+        background-color: #f5f9ff;
+      }
+
+      /* Header */
+      header {
+        background-color: white;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+
+      .header-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 0;
+      }
+
+      .logo {
+        height: 32px;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 25px;
+      }
+
+      .nav-links a {
+        font-weight: 500;
+        font-size: 15px;
+      }
+
+      .nav-links a:hover {
+        color: #0160ff;
+      }
+
+      .auth-buttons {
+        display: flex;
+        gap: 10px;
+      }
+
+      /* Hero Section */
+      .hero {
+        text-align: center;
+        padding: 60px 0 40px;
+      }
+
+      .hero h1 {
+        font-size: 42px;
+        margin-bottom: 20px;
+        font-weight: 700;
+      }
+
+      .hero p {
+        font-size: 18px;
+        max-width: 700px;
+        margin: 0 auto 30px;
+        color: #666;
+      }
+
+      .drop-zone {
+        border: 2px dashed #ccc;
+        border-radius: 8px;
+        padding: 60px 20px;
+        max-width: 1000px;
+        background-color: rgb(112, 90, 220);
+        transition: all 0.3s;
+      }
+
+      .drop-zone:hover {
+        border-color: #ffffff;
+        background-color: rgb(102, 78, 223);
+      }
+
+      .drop-zone-icon {
+        font-size: 48px;
+        color: #0160ff;
+        margin-bottom: 15px;
+      }
+
+      .drop-zone h3 {
+        margin-bottom: 10px;
+        font-size: 20px;
+      }
+
+      .drop-zone p {
+        color: #666;
+        margin-bottom: 20px;
+      }
+
+      .drop-zone-container {
+        margin: 0 auto 30px;
+        max-width: 1000px;
+        text-align: center;
+        padding: 20px;
+        background-color: rgb(121, 97, 242);
+        border-radius: 8px;
+      }
+
+      .file-input {
+        display: none;
+      }
+
+      .or-divider {
+        display: flex;
+        align-items: center;
+        max-width: 600px;
+        margin: 0 auto 30px;
+        color: #999;
+      }
+
+      .or-divider::before,
+      .or-divider::after {
+        content: "";
+        flex: 1;
+        border-bottom: 1px solid #ddd;
+      }
+
+      .or-divider::before {
+        margin-right: 20px;
+      }
+
+      .or-divider::after {
+        margin-left: 20px;
+      }
+
+      /* Features Section */
+      .features {
+        padding: 60px 0;
+        background-color: #f9fafb;
+      }
+
+      .features h2 {
+        text-align: center;
+        margin-bottom: 50px;
+        font-size: 32px;
+      }
+
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+      }
+
+      .feature-card {
+        background-color: white;
+        border-radius: 8px;
+        padding: 30px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        text-align: center;
+      }
+
+      .feature-icon {
+        font-size: 40px;
+        color: #0160ff;
+        margin-bottom: 20px;
+      }
+
+      .feature-card h3 {
+        margin-bottom: 15px;
+        font-size: 20px;
+      }
+
+      .feature-card p {
+        color: #666;
+      }
+
+      /* How it works */
+      .how-it-works {
+        padding: 60px 0;
+        text-align: center;
+      }
+
+      .how-it-works h2 {
+        margin-bottom: 50px;
+        font-size: 32px;
+      }
+
+      .steps {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        flex-wrap: wrap;
+      }
+
+      .step {
+        flex: 1;
+        min-width: 200px;
+        max-width: 250px;
+      }
+
+      .step-number {
+        width: 40px;
+        height: 40px;
+        background-color: #0160ff;
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 20px;
+        font-weight: bold;
+      }
+
+      .step h3 {
+        margin-bottom: 15px;
+        font-size: 18px;
+      }
+
+      .step p {
+        color: #666;
+        font-size: 15px;
+      }
+
+      /* Footer */
+      footer {
+        background-color: #1a1a1a;
+        color: white;
+        padding: 60px 0 30px;
+      }
+
+      .footer-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 30px;
+        margin-bottom: 40px;
+      }
+
+      .footer-column h3 {
+        color: #fff;
+        margin-bottom: 20px;
+        font-size: 16px;
+      }
+
+      .footer-column ul li {
+        margin-bottom: 12px;
+      }
+
+      .footer-column ul li a {
+        color: #bbb;
+        font-size: 14px;
+      }
+
+      .footer-column ul li a:hover {
+        color: white;
+      }
+
+      .footer-bottom {
+        border-top: 1px solid #333;
+        padding-top: 30px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 20px;
+      }
+
+      .social-links {
+        display: flex;
+        gap: 15px;
+      }
+
+      .social-links a {
+        color: #bbb;
+        font-size: 20px;
+      }
+
+      .social-links a:hover {
+        color: white;
+      }
+
+      .copyright {
+        color: #bbb;
+        font-size: 14px;
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .header-container {
+          flex-direction: column;
+          gap: 15px;
+        }
+
+        .nav-links {
+          gap: 15px;
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+
+        .hero h1 {
+          font-size: 32px;
+        }
+
+        .steps {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .step {
+          max-width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <div class="container header-container">
+        <a href="#">
+          <img
+            src="https://s.smallpdf.com/static/40d7d8365bc6e925.svg"
+            alt="Smallpdf"
+            class="logo"
+          />
+          <h1>SmallPDF</h1>
+        </a>
+
+        <nav>
+          <ul class="nav-links">
+            <li><a href="#">Inicio</a></li>
+            <li><a href="#">Herramientas</a></li>
+            <li><a href="#">Recursos</a></li>
+            <li><a href="#">Para empresas</a></li>
+            <li><a href="#">Precios</a></li>
+          </ul>
+        </nav>
+        <div class="auth-buttons">
+          <a href="#" class="btn btn-outline">Iniciar sesión</a>
+          <a href="#" class="btn btn-primary">Registrarse</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <main>
+      <section class="hero">
+        <div class="container">
+          <h1>Unir PDF</h1>
+          <p>
+            Combina varios archivos PDF en un único documento ordenado en
+            cuestión de segundos.
+          </p>
+
+          <div class="drop-zone-container">
+            <div class="drop-zone">
+              <div class="drop-zone-icon">📄</div>
+              <label for="file-upload" class="btn btn-primary">
+                ELEGIR ARCHIVOS
+              </label>
+              <input
+                id="file-upload"
+                type="file"
+                class="file-input"
+                multiple
+                accept=".pdf"
+              />
+              <p style="color: #fff">Arrastra y suelta tus archivos PDF</p>
+            </div>
+          </div>
+
+          <div class="or-divider">
+            O elige un archivo de Dropbox o Google Drive
+          </div>
+
+          <div>
+            <button class="btn btn-outline">Dropbox</button>
+            <button class="btn btn-outline">Google Drive</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Features Section -->
+      <section class="features">
+        <div class="container">
+          <h2>Por qué unir PDF con Smallpdf</h2>
+          <div class="features-grid">
+            <div class="feature-card">
+              <div class="feature-icon">🔒</div>
+              <h3>Seguro y confiable</h3>
+              <p>
+                Todos los archivos se eliminan de nuestros servidores después de
+                1 hora y nadie tiene acceso a tus documentos.
+              </p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">⚡</div>
+              <h3>Rápido y fácil</h3>
+              <p>
+                Nuestra herramienta funciona en la nube y es compatible con
+                todos los sistemas operativos.
+              </p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">💻</div>
+              <h3>Sin instalación</h3>
+              <p>
+                No necesitas descargar ni instalar ningún software. Funciona
+                directamente en tu navegador.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- How it works -->
+      <section class="how-it-works">
+        <div class="container">
+          <h2>Cómo unir archivos PDF</h2>
+          <div class="steps">
+            <div class="step">
+              <div class="step-number">1</div>
+              <h3>Sube tus archivos PDF</h3>
+              <p>
+                Arrastra y suelta tus archivos PDF en el área superior o
+                seleccionalos desde tu dispositivo.
+              </p>
+            </div>
+            <div class="step">
+              <div class="step-number">2</div>
+              <h3>Combina los archivos</h3>
+              <p>
+                Reorganiza las páginas arrastrando y soltando si es necesario.
+                Haz clic en "Unir PDF".
+              </p>
+            </div>
+            <div class="step">
+              <div class="step-number">3</div>
+              <h3>Descarga tu nuevo PDF</h3>
+              <p>
+                Tu nuevo archivo PDF estará listo para descargar inmediatamente.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-column">
+            <h3>Smallpdf</h3>
+            <ul>
+              <li><a href="#">Inicio</a></li>
+              <li><a href="#">Herramientas</a></li>
+              <li><a href="#">Precios</a></li>
+              <li><a href="#">Blog</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h3>Empresa</h3>
+            <ul>
+              <li><a href="#">Acerca de</a></li>
+              <li><a href="#">Trabajos</a></li>
+              <li><a href="#">Afiliados</a></li>
+              <li><a href="#">Condiciones</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h3>Recursos</h3>
+            <ul>
+              <li><a href="#">Centro de ayuda</a></li>
+              <li><a href="#">Privacidad</a></li>
+              <li><a href="#">Seguridad</a></li>
+              <li><a href="#">Contacto</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h3>Productos</h3>
+            <ul>
+              <li><a href="#">Smallpdf Pro</a></li>
+              <li><a href="#">Smallpdf para equipos</a></li>
+              <li><a href="#">Smallpdf para empresas</a></li>
+              <li><a href="#">Descargar aplicación</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <div class="social-links">
+            <a href="#">📘</a>
+            <a href="#">🐦</a>
+            <a href="#">📸</a>
+            <a href="#">🔗</a>
+          </div>
+          <div class="copyright">
+            © 2023 Smallpdf AG — Hecho con ❤️ en Suiza
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
