@@ -1,4 +1,4 @@
-import { IsInt, IsUrl, Length, Min } from 'class-validator';
+import { IsInt, IsStrongPassword, IsUrl, Length, Min } from 'class-validator';
 
 export class CrearEditarBaseDTO {
   @Length(3, 500)
@@ -10,4 +10,10 @@ export class CrearEditarBaseDTO {
 
   @IsUrl()
   imagenURL: string;
+
+  @Length(3, 500)
+  username: string;
+
+  @Length(8, 100)
+  password: string;
 }

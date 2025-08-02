@@ -1,9 +1,26 @@
-import { Body, Controller, Get, Post, Query } from '@nestjs/common';
+import {
+  BadRequestException,
+  Body,
+  Controller,
+  Delete,
+  Get,
+  NotFoundException,
+  Param,
+  Post,
+  Put,
+  Query,
+  Req,
+  Res,
+  UploadedFile,
+  UseInterceptors,
+  Response,
+} from '@nestjs/common';
 import { CasaService } from './casa.service';
 import { FindManyOptions, Like } from 'typeorm';
 import { BuscarDto } from './dto/buscar.dto';
 import { Casa } from './casa.entity';
 import { CrearEditarBaseDTO } from './dto/crear-editar.base.dto';
+import { Session } from '@nestjs/common';
 
 @Controller('api/casa')
 export class CasaController {
@@ -24,6 +41,8 @@ export class CasaController {
       parametrosCuerpo.nombre,
       parametrosCuerpo.valor,
       parametrosCuerpo.imagenURL,
+      parametrosCuerpo.username,
+      parametrosCuerpo.password,
     );
   }
 }
