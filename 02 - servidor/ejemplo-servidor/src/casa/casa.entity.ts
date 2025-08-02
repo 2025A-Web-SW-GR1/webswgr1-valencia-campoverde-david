@@ -14,6 +14,15 @@ export class Casa {
   @Column()
   imagenURL: string;
 
+  @Column({ nullable: true })
+  fileContentType?: string;
+
+  @Column({ nullable: true })
+  filename?: string;
+
+  @Column({ nullable: true })
+  fileID?: string;
+
   // Usado para los datos de sesion
 
   @Column({ nullable: true })

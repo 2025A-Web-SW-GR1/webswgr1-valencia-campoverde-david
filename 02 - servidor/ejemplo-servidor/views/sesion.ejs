@@ -23,23 +23,19 @@
                     <p><strong>Nombre casa: </strong>
                         <%= casa.nombre %>
                     </p>
-                    <p><strong>Ejemplo iteracion:</strong></p>
 
-                    <ul>
-                        <% arregloDeNumeros.forEach(function(numero){ %>
-                            <li>
-                                <%= numero %>
-                            </li>
-                            <% }); %>
-                    </ul>
+                    <% if (casa?.imagenURL) { %>
+                    <img src="<%= casa.imagenURL %>" alt="Imagen de la casa" style="max-width: 300px;">
+                    <% } %>
+
                     <a href="/auth/logout">
                         <button>
                             Logout
                         </button>
-                        </button>
-                        <% } else {%>
-                            <h2>NO tiene sesion!</h2>
-                            <% }%>
+                    </a>
+                    <% } else {%>
+                    <h2>NO tiene sesion!</h2>
+                    <% }%>
             </div>
             <div class="col-sm-4"></div>
         </div>

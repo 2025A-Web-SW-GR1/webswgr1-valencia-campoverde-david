@@ -11,6 +11,9 @@ export class CasaService {
   obtenerTodos(options?: FindManyOptions<Casa> | undefined) {
     return this.casaRepository.find(options);
   }
+  obtenerUnoPorId(id: number) {
+    return this.casaRepository.findOneBy({ id });
+  }
   crearUno(
     nombre: string,
     valor: number,
@@ -32,6 +35,24 @@ export class CasaService {
 
   buscarUnoPorUsername(username: string) {
     return this.casaRepository.findOneByOrFail({ username });
+  }
+
+  async actualizarArchivoPorId(
+    valoresAActualizar: {
+      fileContentType: string;
+      filename: string;
+      fileID: string;
+    },
+    id: number,
+  ) {
+    const recordExist = await this.casaRepository.findOneByOrFail({ id });
+    let registroActualizar = this.casaRepository.create();
+    registroActualizar = {
+      ...registroActualizar,
+      ...valoresAActualizar,
+    };
+    registroActualizar.id = recordExist.id;
+    return this.casaRepository.save(registroActualizar);
   }
 }
 // This service uses the CasaRepository to interact with the database.
