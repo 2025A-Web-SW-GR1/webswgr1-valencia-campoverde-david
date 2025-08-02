@@ -82,4 +82,9 @@ export class AuthController {
       casa,
     });
   }
+
+  @Get('tablas')
+  mostrarVistaTablas(@Res() res: any) {
+    res.render('tabla-casas');
+  }
 }
