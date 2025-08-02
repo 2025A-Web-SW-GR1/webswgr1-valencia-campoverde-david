@@ -29,19 +29,14 @@ export class AuthController {
     @Session() session: Record<string, any>,
     @Res() res: any,
   ) {
-    // Using @Session() decorator
     try {
       const respuesta = await this.casaService.buscarUnoPorUsername(
         login.username,
       );
       if (respuesta.password === login.password) {
-        session.user = {
-          ...respuesta,
-        };
+        session.user = { ...respuesta };
         if (login.rest) {
-          return {
-            mensaje: 'Usuario logeado exitosamente',
-          };
+          return { mensaje: 'Usuario logeado exitosamente' };
         }
         res.redirect('/auth/sesion');
       } else {
@@ -51,6 +46,8 @@ export class AuthController {
       }
     } catch (e) {
       console.error('No se encontro usuario');
+      // borrar cookie si hay error en sesión
+      res.clearCookie('connect.sid');
       res.redirect('/auth/login-vista?mensaje=Usuario no encontrado');
     }
   }
@@ -62,8 +59,10 @@ export class AuthController {
       if (err) {
         console.error('Error destroying session:', err);
       }
+      // borrar cookie en el cliente
+      res.clearCookie('connect.sid');
+      res.redirect('/auth/login-vista');
     });
-    res.redirect('/auth/login-vista');
   }
 
   @Get('sesion')
